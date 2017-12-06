@@ -1,3 +1,44 @@
+Adjust the SDK before build:
+
+Update components/toolchain/gcc/Makefile.posix with your CC path
+
+for example:
+-GNU_INSTALL_ROOT := /usr/local/gcc-arm-none-eabi-4_9-2015q1
++GNU_INSTALL_ROOT := /home/username/gcc-arm-none-eabi-5_4-2016q3
+
+Customize bsp:
+
+diff --git a/examples/bsp/pca20006.h b/examples/bsp/pca20006.h
+index 3f86aee..bdffedc 100644
+--- a/examples/bsp/pca20006.h
++++ b/examples/bsp/pca20006.h
+@@ -15,9 +15,9 @@
+ // LEDs and buttons definition for PCA20006 board (beacon)
+ #define LEDS_NUMBER    3
+
+-#define LED_RGB_RED    16
++#define LED_RGB_RED    13
+ #define LED_RGB_GREEN  12
+-#define LED_RGB_BLUE   15
++#define LED_RGB_BLUE   14
+
+ #define BSP_LED_0 LED_RGB_RED
+ #define BSP_LED_1 LED_RGB_GREEN
+@@ -46,8 +46,8 @@
+
+ #define BUTTONS_LIST { BUTTON_0, BUTTON_1 }
+
+-#define RX_PIN_NUMBER  24
+-#define TX_PIN_NUMBER  9
++#define RX_PIN_NUMBER  15
++#define TX_PIN_NUMBER  16
+ #define CTS_PIN_NUMBER 21
+ #define RTS_PIN_NUMBER 11
+ #define HWFC           true
+--
+2.7.4
+
+-----------------------------------------------------------
 Build and Flash:
 
 export NRF5_SDK_PATH=<path_to>/nRF5_SDK_11.0.0_89a8197
